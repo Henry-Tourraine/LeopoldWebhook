@@ -231,4 +231,4 @@ async function addUser(obj){
 
   }
 
-exports.module = {createUserFiles}
+  module.exports = {createUserFiles}
