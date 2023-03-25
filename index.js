@@ -2,7 +2,7 @@ let http = require('http');
 let crypto = require('crypto');
 let  { exec } = require('child_process');
 const express = require('express');
-const {createUserFiles} = reuqire("./docs.js");
+const {createUserFiles} = require("./docs.js");
 const app = express();
 // you explicitly create the http server
 const server = require('http').createServer(app);
