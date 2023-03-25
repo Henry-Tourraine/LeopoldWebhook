@@ -61,7 +61,7 @@ app.post("/", (req, res) => {
     });
 
 app.get("/register", (req, res)=>{
-    res.render("index");
+    res.render("index", {message: null});
 })
 
 app.post("/register", async(req, res)=>{
