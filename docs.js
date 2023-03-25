@@ -193,6 +193,7 @@ async function addUser(obj){
     
 
     let ID_SERVER_FILE = await drive.createDocs("http://64.226.73.130/", "server_name");
+    console.log(ID_SERVER_FILE.data);
     
 
     //console.log(JSON.stringify({fields: [{"name":"GOOGLE","value":"Étymologie. Le terme soupe vient du latin tardif suppa, « tranche de pain sur laquelle on verse le bouillon », sens que le mot avait jusqu'au XVI e siècle et que l'on retrouve dans des expressions archaïques comme « tailler la soupe », « tremper la soupe » ou « trempé comme une soupe »"},{"value":"ingrédients issus de l'agriculture biologique","name":"IMPORTANT"},{"value":"phrase d'accroche sur le produit\nfabrication (si pertinent)\nutilisation\nOrigine\nbienfaits sous forme de liste à puces\nconclusion sympathique\nPrésentation de la Marque à la troisième personne","name":"SCHEMA"},{"value":"Soupe onctueuse","name":"GOUT"},{"name":"DESCRIPTION_MARQUE","value":"Pour atteindre notre finalité, nous nous sommes constitués en une coopérative de salariés. Notre engagement dans l’économie sociale facilite les liens avec les producteurs : nous partageons les mêmes valeurs coopératives. C’est une entreprise où les personnes et le travail priment sur le capital. Ce modèle permet aux salariés de détenir un po"}], suggestions: [], promptTemplate: "Produit : {\nTitre : [DESIGNATION]\nListe des ingrédients : [INGREDIENTS]\nOrigine:[GOOGLE]\nMarque : [MARQUE]}\n\n\nRôle : Imagine que tu es un expert en SEO depuis plus de 20 ans. Tu es spécialisé dans les fiches produits pour les commerces alimentaires.\n\n\nPour chacun des produits, rédige une Description du produit à partir des informations données avec un style convivial et adapté au SEO. Maximum 500 tokens. Insiste sur [IMPORTANT] Adopte le point de vue du vendeur sans jamais le citer. Parle de la marque uniquement dans la partie Description de la [MARQUE].  N'utilise pas pas \"notre\" mais \"ce\". \nUtilise une lettre majuscule à chaque début de phrase.\nParle de la [GOUT].\nSuis la structure suivante :\n[SCHEMA]" }));
@@ -200,7 +201,7 @@ async function addUser(obj){
    
 
 
-
+    
     content.users.push(
         {
             EMAIL: email,
@@ -219,7 +220,7 @@ async function addUser(obj){
 
 
     drive.setFile(CATALOGUE_BIO_TRASH.data.id);
-    drive.setPermission("writer", email);
+    await drive.setPermission("writer", email);
     console.log("permission given for CATALOGUE_BIO_TRASH");
 
     drive.setFile(ID_SERVER_FILE.data.id);
