@@ -2,7 +2,6 @@ let http = require('http');
 let crypto = require('crypto');
 let  { exec } = require('child_process');
 const express = require('express');
-const { Sequelize, Model, DataTypes } = reuqire('sequelize');
 const app = express();
 // you explicitly create the http server
 const server = require('http').createServer(app);
@@ -16,20 +15,6 @@ app.set("view engine", "ejs");
 
 
 
-const sequelize = new Sequelize('test','root','',{
-    host: 'localhost',
-    dialect: 'mysql'
-});
-
-const User = sequelize.define('User', {
-  email: DataTypes.STRING
-});
-
-const jane = await User.create(
-    {email: "jeanne@outlook.fr"}
-  );
-  
-  const users = await User.findAll();
 
 app.post("/", (req, res) => {
     req.on("data", chunk=>{
@@ -55,7 +40,7 @@ app.post("/", (req, res) => {
         console.log("allowed")
         const { exec } = require('child_process');
 
-        exec('cd catalogue.bio', (error, stdout, stderr) => {
+        exec('cd ../setup.sh', (error, stdout, stderr) => {
         if (error) {
             console.error(`error: ${error.message}`);
             return;
