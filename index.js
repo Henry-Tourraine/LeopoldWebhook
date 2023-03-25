@@ -40,7 +40,7 @@ app.post("/", (req, res) => {
         console.log("allowed")
         const { exec } = require('child_process');
 
-        exec('cd ../setup.sh', (error, stdout, stderr) => {
+        exec('cd ../launch.sh', (error, stdout, stderr) => {
         if (error) {
             console.error(`error: ${error.message}`);
             return;
