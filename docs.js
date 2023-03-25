@@ -180,7 +180,8 @@ async function addUser(obj){
 
     if(content.users.filter(u=>u.EMAIL==email).length>0){
         console.log("user already exists");
-        return "user already exists";
+        return {message: "user already exists"};
+       
     }
     
 
@@ -214,26 +215,29 @@ async function addUser(obj){
     drive.setFile(fileId);
     await drive.updateDocs(JSON.stringify(content));
 
-    setTimeout(async()=>{
-        drive.setFile(CATALOGUE_BIO_TRASH.data.id);
-        drive.setPermission("writer", email);
-        console.log("permission given for CATALOGUE_BIO_TRASH");
+    
 
-        drive.setFile(ID_SERVER_FILE.data.id);
-        await drive.setPermission("writer", email);
-        console.log("permission given for ID_SERVER_FILE");
 
-        drive.setFile(ID_FIELDS_FILE.data.id);
-        await drive.setPermission("writer", email);
-        console.log("permission given for ID_FIELDS_FILE");
+    drive.setFile(CATALOGUE_BIO_TRASH.data.id);
+    drive.setPermission("writer", email);
+    console.log("permission given for CATALOGUE_BIO_TRASH");
 
-        //USER_LIST
-        drive.setFile("13akfxRFwXLjmx3lXvhIkyrmggb6sZUZ2cx1q3Bqk9Hc");
-        await drive.setPermission("writer", email);
-        console.log("permission given for users list");
+    drive.setFile(ID_SERVER_FILE.data.id);
+    await drive.setPermission("writer", email);
+    console.log("permission given for ID_SERVER_FILE");
+
+    drive.setFile(ID_FIELDS_FILE.data.id);
+    await drive.setPermission("writer", email);
+    console.log("permission given for ID_FIELDS_FILE");
+
+    //USER_LIST
+    drive.setFile("13akfxRFwXLjmx3lXvhIkyrmggb6sZUZ2cx1q3Bqk9Hc");
+    await drive.setPermission("writer", email);
+    console.log("permission given for users list");
         
-    }, 1000)
+ 
 
+    return {message: "done"};
   }
 
   module.exports = {createUserFiles}

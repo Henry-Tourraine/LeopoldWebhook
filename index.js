@@ -66,8 +66,9 @@ app.get("/register", (req, res)=>{
 
 app.post("/register", async(req, res)=>{
     if(!!req.body.email==false)res.json({message: "no email"});
-    await createUserFiles(req.body.email);
-    res.json({message: "done"});
+    let m  = await createUserFiles(req.body.email);
+    res.redirect('/register', {message: m.message});
+    //res.json({message: "done"});
 })
 
  app.listen(2000, ()=>console.log("webhook listens on port 2000..."));
