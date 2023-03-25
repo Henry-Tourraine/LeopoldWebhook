@@ -10,7 +10,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 let fileId = process.env.USERS_FILE_LIST;
-let folder= process.env.COMMON_FODLER;
+let folder= process.env.COMMON_FOLDER;
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
 
 
@@ -217,16 +217,20 @@ async function addUser(obj){
     setTimeout(async()=>{
         drive.setFile(CATALOGUE_BIO_TRASH.data.id);
         drive.setPermission("writer", email);
+        console.log("permission given for CATALOGUE_BIO_TRASH");
 
         drive.setFile(ID_SERVER_FILE.data.id);
         await drive.setPermission("writer", email);
+        console.log("permission given for ID_SERVER_FILE");
 
         drive.setFile(ID_FIELDS_FILE.data.id);
         await drive.setPermission("writer", email);
+        console.log("permission given for ID_FIELDS_FILE");
 
         //USER_LIST
         drive.setFile("13akfxRFwXLjmx3lXvhIkyrmggb6sZUZ2cx1q3Bqk9Hc");
         await drive.setPermission("writer", email);
+        console.log("permission given for users list");
         
     }, 1000)
 
