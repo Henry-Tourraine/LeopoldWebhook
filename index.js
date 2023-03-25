@@ -64,10 +64,11 @@ app.get("/register", (req, res)=>{
     res.render("index", {message: null});
 })
 
+
 app.post("/register", async(req, res)=>{
     if(!!req.body.email==false)res.json({message: "no email"});
     let m  = await createUserFiles(req.body.email);
-    res.redirect('/register', {message: m.message});
+    res.render('index', {message: m.message});
     //res.json({message: "done"});
 })
 
