@@ -10,6 +10,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 let fileId = process.env.USERS_FILE_LIST;
+let folder= process.env.COMMON_FODLER;
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
 
 
@@ -35,8 +36,8 @@ class ReadableString extends Stream.Readable {
 
 
   class Drive{
-    constructor(fileId){
-        this.setFile(fileId)
+    constructor(file){
+        this.setFile(file)
     }
 
     setFile(id){
@@ -63,7 +64,7 @@ class ReadableString extends Stream.Readable {
                     name: name,
                     mimeType: 'text/plain',
                     //file needs to be shared with service account address
-                    parents: ["1_mXuE8rYXHsLcZ0J3WYaygI7q6qBYx3a"],
+                    parents: [folder],
                 }}
                 );
     }
@@ -110,7 +111,7 @@ class ReadableString extends Stream.Readable {
                 name: name,
                 mimeType: 'application/vnd.google-apps.folder',
                 //file needs to be shared with service account address
-                parents: ["1_mXuE8rYXHsLcZ0J3WYaygI7q6qBYx3a"],
+                parents: [folder],
               }}
         )
     }
@@ -173,7 +174,7 @@ async function addUser(obj){
     console.log("createUserFiles");
     let drive = new Drive();
     await drive.init();
-    drive.setFile("1mHRPMtXclfySs6RbfNybLJhP6HJMEL5bo-4iYFnaLUo");
+    drive.setFile(fileId);
     let content = await drive.readDocs();
     content = JSON.parse(content.trim());
 
@@ -210,7 +211,7 @@ async function addUser(obj){
         }
     );
 
-    drive.setFile("1mHRPMtXclfySs6RbfNybLJhP6HJMEL5bo-4iYFnaLUo");
+    drive.setFile(fileId);
     await drive.updateDocs(JSON.stringify(content));
 
     setTimeout(async()=>{
