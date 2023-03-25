@@ -64,9 +64,9 @@ app.get("/register", (req, res)=>{
     res.render("index");
 })
 
-app.post("/register", (req, res)=>{
+app.post("/register", async(req, res)=>{
     if(!!req.body.email==false)res.json({message: "no email"});
-    createUserFiles(req.body.email);
+    await createUserFiles(req.body.email);
     res.json({message: "done"});
 })
 
