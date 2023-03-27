@@ -218,6 +218,10 @@ async function addUser(obj){
 
     
 
+    drive.setFile(CATALOGUE_BIO.data.id);
+    await drive.setPermission("writer", email);
+    console.log("permission given for CATALOGUE_BIO_TRASH");
+
 
     drive.setFile(CATALOGUE_BIO_TRASH.data.id);
     await drive.setPermission("writer", email);
