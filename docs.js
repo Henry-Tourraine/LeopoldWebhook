@@ -62,7 +62,7 @@ class ReadableString extends Stream.Readable {
                 },
                 requestBody: {
                     name: name,
-                    mimeType: 'text/plain',
+                    mimeType: 'application/vnd.google-apps.document',
                     //file needs to be shared with service account address
                     parents: [folder],
                 }}
