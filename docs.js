@@ -206,8 +206,8 @@ async function addUser(obj){
         {
             EMAIL: email,
             CATALOGUE_BIO_TRASH: CATALOGUE_BIO_TRASH.data.id,
-            ID_SERVER_FILE: ID_SERVER_FILE.data.webViewLink.match(/https:\/\/drive.google.com\/file\/d\/([0-9a-zA-Z\_\-]*)\//)[1],
-            ID_FIELDS_FILE: ID_FIELDS_FILE.data.webViewLink.match(/https:\/\/drive.google.com\/file\/d\/([0-9a-zA-Z\_\-]*)\//)[1],
+            ID_SERVER_FILE: ID_SERVER_FILE.data.id,
+            ID_FIELDS_FILE: ID_FIELDS_FILE.data.id,
             CATALOGUE_BIO: CATALOGUE_BIO.data.id
 
         }
