@@ -10,6 +10,7 @@ const server = require('http').createServer(app);
 
 const SECRET = 'LEOPOLD';
 
+app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
@@ -70,6 +71,12 @@ app.post("/register", async(req, res)=>{
     let m  = await createUserFiles(req.body.email);
     res.render('index', {message: m.message});
     //res.json({message: "done"});
+})
+
+app.get("/docs", async(req, res)=>{
+  
+  res.render('docs');
+ 
 })
 
  app.listen(4000, ()=>console.log("webhook listens on port 2000..."));
